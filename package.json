@@ -15,8 +15,14 @@
     "prettier": "^2.1.2"
   },
   "lint-staged": {
-    "*.(gql|css|scss|json|yml|md)": ["prettier --write", "git add"],
-    "*.js": ["eslint --fix", "git add"],
+    "*.(gql|css|scss|json|yml|md)": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
     "server/{app,config,lib,spec,db/migrate}/**/*.rb": [
       "rubocop --auto-correct",
       "git add"
@@ -27,5 +33,9 @@
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "yarn": "^1.22.10"
   }
 }
