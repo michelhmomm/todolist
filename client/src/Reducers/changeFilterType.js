@@ -9,7 +9,7 @@ export const changeFilterType = (state = initialState, action) => {
         case CLICK_UPDATE_VALUE:
             return {
                 ...state,
-                newValue: action.newValue
+                newValue: action.newValue.currentTarget.value
             };
         default:
             return state;

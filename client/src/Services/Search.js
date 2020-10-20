@@ -7,36 +7,56 @@ class Search extends React.Component {
   constructor(props) {
     super(props)    
 
-    var listRowsValue = [ {id: 1, description: "teste '1"}, {id: 2, description: "teste 2"}, {id: 3, description: "3 teste"}, {id: 4, description: "4444"}, {id: 5, description: "te5te"},
-                          {id: 6, description: "teste '61"}, {id: 7, description: "777"}, {id: 8, description: "38 teste"}, {id: 9, description: "999"}, {id: 10, description: "10101010"}]
+    // var listRowsValue = [ {id: 1, description: "teste '1"}, {id: 2, description: "teste 2"}, {id: 3, description: "3 teste"}, {id: 4, description: "4444"}, {id: 5, description: "te5te"},
+    //                       {id: 6, description: "teste '61"}, {id: 7, description: "777"}, {id: 8, description: "38 teste"}, {id: 9, description: "999"}, {id: 10, description: "10101010"}]
 
-    this.state = {defaultRows: listRowsValue}
+    // this.state = {defaultRows: listRowsValue}
   }
 
-  performSearch(searchTerm, type) {   
+  // performSearch(searchTerm, type) {   
     
-    var listRows = [];    
+  //   var listRows = [];    
 
-    var searchFilter = this.state.defaultRows.filter(rows => rows.description.includes(searchTerm));
+  //   var searchFilter = this.state.defaultRows;
 
-    searchFilter.forEach((item) => {
-      const row = <ListRow id={item.id} description={item.description}/>
-      listRows.push(row)
-    })
+  //   if (searchTerm !== undefined) {
+  //     searchFilter = this.state.defaultRows.filter(rows => rows.description.includes(searchTerm));
+  //   }
 
-    return listRows;
-  }  
+  //   searchFilter.forEach((item) => {
+  //     const row = <ListRow id={item.id} description={item.description}/>
+  //     listRows.push(row)
+  //   })
 
-  discoverySearch(type) {   
-    var listRows = [];
+  //   return listRows;
+  // }  
 
-    this.state.defaultRows.forEach((item) => {
-      const row = <ListRow id={item.id} description={item.description}/>
-      listRows.push(row)
-    })
+  // discoverySearch(type) {   
+  //   var listRows = [];
 
-    return listRows;
-  }  
+  //   this.state.defaultRows.forEach((item) => {
+  //     const row = <ListRow id={item.id} description={item.description}/>
+  //     listRows.push(row)
+  //   })
+
+  //   return listRows;
+  // }  
+
+  // addNewItem(itemDescription) {   
+    
+  //   var listRows = [];    
+  //   var newItem = {id: this.state.defaultRows.lastIndexOf().id + 1, description: itemDescription};
+  //   this.state.defaultRows.push(newItem);
+
+  //   var searchFilter = this.state.defaultRows;//.filter(rows => rows.description.includes(searchTerm));
+
+  //   searchFilter.forEach((item) => {
+  //     const row = <ListRow id={item.id} description={item.description}/>
+  //     listRows.push(row)
+  //   })
+
+  //   return listRows;
+  // }  
 }
 
 export default Search;

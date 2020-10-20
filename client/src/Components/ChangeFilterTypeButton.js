@@ -11,14 +11,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 class ChangeFilterTypeButton extends React.Component {
 
   render() {
-    const { clickButton, newValue } = this.props;    
+    const { clickButton } = this.props;    
     var value;
 
     return (
         <div style={{padding: "10px"}}>
           <FormControl component="fieldset">
             <FormLabel component="legend">Filtro:</FormLabel>
-            <RadioGroup row aria-label="filter" name="filter" defaultValue="1" onChange={() => clickButton(value)} value={value}>
+            <RadioGroup row aria-label="filter" name="filter" defaultValue="1" onChange={(value) => clickButton(value)} value={value}>
               <FormControlLabel value="1" control={<Radio defaultChecked="true" />} label="Todas" />
               <FormControlLabel value="2" control={<Radio />} label="Concluidas" />
               <FormControlLabel value="3" control={<Radio />} label="Em andamento" />

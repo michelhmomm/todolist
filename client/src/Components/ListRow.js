@@ -5,7 +5,7 @@ class ListRow extends React.Component {
   render() {
     return (
         <div key={this.props.id}>
-          <p>{this.props.description}</p>
+          <p>{this.props.description}</p>          
         </div>)
   }
 

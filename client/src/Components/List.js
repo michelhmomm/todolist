@@ -3,17 +3,20 @@ import Search from './../Services/Search';
 import 'bootstrap/dist/css/bootstrap.css';
 import { connect } from 'react-redux';
 import ChangeFilterTypeButton from './ChangeFilterTypeButton';
+import ListRow from './ListRow';
+import { addNewItem } from './../Actions';
+import { bindActionCreators } from 'redux';
 
 class List extends React.Component {
 
     constructor(props) {
         super(props)       
 
-        const { newValue } = props;
+        const { addNewItem, defaultValues } = props;
         
         const search = new Search();  
-        var rows = search.discoverySearch(newValue); 
-        this.state = {rows: rows}
+        // var rows = search.discoverySearch(newValue); 
+        // this.state = {rows: rows}
     }    
 
     searchChangeHandler(event) {
@@ -28,6 +31,31 @@ class List extends React.Component {
         this.setState({rows: rows})
     }
 
+    // addNewItem(event) {
+    //     const newItemDescription = event.target.value
+
+    //     if (newItemDescription === '' || event.which !== 13)
+    //         return;  
+        
+    //     // const { newValue } = this.props;
+    //     const search = new Search();        
+    //     var rows = search.performSearch();
+    //     const row = <ListRow id={this.state.rows[this.state.rows.length-1].props.id + 1} description={newItemDescription}/>
+    //     rows.push(row);
+
+    //     this.setState({rows: rows})
+    //     event.target.value = ""
+    // }
+
+    addNewItemEv(event) {
+        const newItemDescription = event.target.value
+
+        if (newItemDescription === '' || event.which !== 13)
+            return;  
+        
+        addNewItem(newItemDescription);
+    }
+
     render() {
         return (
             <div>
@@ -38,22 +66,14 @@ class List extends React.Component {
                     paddingTop: 8,
                     paddingBottom: 8,
                     paddingLeft: 16
-                }} placeholder="Add new item"/>
+                }}  onKeyDown={this.addNewItemEv.bind(this)} placeholder="Add new item"/>
+                {/* }} onKeyDown={this.addNewItem.bind(this)} placeholder="Add new item"/> */}
 
                 <div className="search-container" style={{display: 'flex'}}>
-                    <input style={{
-                        fontSize: 24,
-                        display: 'block',
-                        width: "40%",
-                        paddingTop: 8,
-                        paddingBottom: 8,
-                        paddingLeft: 16
-                    }} onChange={this.searchChangeHandler.bind(this)} placeholder="Enter search term"/>
-            
                     <ChangeFilterTypeButton/>
                 </div>
 
-                <div style={{padding: "10px"}}>   
+                {/* <div style={{padding: "10px"}}>   
                     <div className="container">
                         <div className="row">
                             {this.state.rows && this.state.rows.map((item, key) =>
@@ -61,19 +81,20 @@ class List extends React.Component {
                             )}
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         );
     }
 }
 
 const mapStateToProps = store => ({
-    newValue: store.changeFilterType.newValue
+    newValue: store.changeFilterType.newValue,
+    defaultValues: store.addNewItem.defaultValues
 });
 
-// const mapDispatchToProps = dispatch =>
-//      bindActionCreators({ clickButton }, dispatch);
+const mapDispatchToProps = dispatch =>
+     bindActionCreators({ addNewItem }, dispatch);
 
 
 // export default List
-export default connect(mapStateToProps, null)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(List);
